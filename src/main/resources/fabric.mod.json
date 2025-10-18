@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "mymod",
+  "version": "1.0.0",
+  "name": "My Mod",
+  "description": "Test mod for Minecraft 1.21.3",
+  "authors": [
+    "shadrin.dev"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/mymod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "shadrin.dev.Main"
+    ],
+    "client": ["shadrin.dev.client.screen.MyModClient"]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "1.21.3"
+  }
+}

@@ -1,0 +1,79 @@
+plugins {
+    id 'fabric-loom' version '1.10.+'
+    id 'java'
+//    id 'com.google.protobuf' version '0.9.4'
+}
+
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:4.32.1"
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                java { }
+//            }
+//        }
+//    }
+//}
+
+loom {
+    mixin { defaultRefmapName = "modid.refmap.json" }
+
+    runs {
+        client {
+            client()
+            setConfigName "Fabric Client"
+            ideConfigGenerated true
+            runDir "run/client"
+        }
+        server {
+            server()
+            setConfigName "Fabric Server"
+            ideConfigGenerated true
+            runDir "run/server"
+        }
+    }
+}
+
+group   = 'shadrin.dev'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabricmc.net' }
+}
+
+dependencies {
+    // Minecraft + mappings + loader
+    minecraft "com.mojang:minecraft:1.21.3"
+    mappings  "net.fabricmc:yarn:1.21.3+build.2:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.16.9"
+
+    // Fabric API
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.107.0+1.21.3"
+
+    // Protobuf
+    implementation 'com.google.protobuf:protobuf-java:4.33.0'
+
+    // Postgres
+    implementation 'org.postgresql:postgresql:42.7.5'
+
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'org.hibernate:hibernate-core:6.5.2.Final'
+    // connection-pool (опционально, но удобно)
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+
+    // Tests
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
