@@ -82,7 +82,7 @@ public class MessageScreen extends Screen {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
-            // Обработка Enter для отправки сообщения
+            // обработка Enter для отправки сообщения
             if (textField.isFocused()) {
                 sendButton.onPress();
                 return true;
