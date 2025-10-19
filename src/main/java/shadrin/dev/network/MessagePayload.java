@@ -11,7 +11,7 @@ public record MessagePayload(UUID playerId, byte[] protoBytes) implements Custom
 
     public static final Id<MessagePayload> ID = new Id<>(ModPackets.CHANNEL_ID);
 
-    /* ---------- самый простой packet codec ---------- */
+
     public static final PacketCodec<RegistryByteBuf, MessagePayload> CODEC = new PacketCodec<>() {
         @Override
         public void encode(RegistryByteBuf buf, MessagePayload value) {
